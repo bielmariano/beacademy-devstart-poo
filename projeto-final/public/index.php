@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 include '../vendor/autoload.php';
 
+use App\Controller\CategoryController;
 use App\Controller\IndexController;
 use App\Controller\ProductController;
 
@@ -15,5 +16,10 @@ $p = new ProductController();
 $p->listAction();
 $p->addAction();
 $p->editAction();
+
+$category = new CategoryController();
+$category->listAction();
+$category->addAction();
+$category->editAction();
 
 // echo 'Ola mundo';

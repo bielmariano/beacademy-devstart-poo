@@ -7,19 +7,21 @@ include '../vendor/autoload.php';
 use App\Controller\CategoryController;
 use App\Controller\IndexController;
 use App\Controller\ProductController;
+use App\Controller\ErrorController;
 
-$c = new IndexController();
-// $c->indexAction();
-$c->loginAction();
+$url = explode('?', $_SERVER['REQUEST_URI'])[0];
 
-$p = new ProductController();
-$p->listAction();
-$p->addAction();
-$p->editAction();
+if($url === '/') {
+    $c = new IndexController();
+    $c->indexAction();
+} elseif ($url === '/login'){
+    $c = new IndexController();
+    $c->loginAction();
+} elseif ($url === '/produtos'){
+    $p = new ProductController();
+    $p->listAction();
+} else {
+    $e = new ErrorController();
+    $e->notFoundAction();
+}
 
-$category = new CategoryController();
-$category->listAction();
-$category->addAction();
-$category->editAction();
-
-// echo 'Ola mundo';
